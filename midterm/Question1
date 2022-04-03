@@ -1,0 +1,45 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+		final int CNT = 5;
+		int minval = 0;  	//Because the computer thinks I didn't initialize these otherwise
+		int minidx = 0;
+		int tmp = 0;
+
+		Scanner scnr = new Scanner(System.in);
+		int N = scnr.nextInt();
+		int[] numbers = new int[N];
+		for (int i = 0; i < N; i++)
+			numbers[i] = scnr.nextInt();
+
+		// Your code
+        int i = 0;
+		int j = 0;
+		int previousMin = -1;
+		
+		for (i = 0; i < CNT; i++) {
+		    minval = Integer.MAX_VALUE;					// resets the minval so it can check again
+		    tmp = numbers[i];						//stores numbers[i] to replace numbers[minidx] later
+		    for (j = 0; j < N; j++) {					//loop checks every number in length N array (could instead do numbers.length)
+		        if (numbers[j] < minval && numbers[j] > previousMin) {		//checks if numbers[j] is less than the current minval AND that it is greater than final minval from previous loop
+		            minval = numbers[j];						//stores new minval
+		            minidx = j;								//stores index of new minval
+		        };
+		    };
+		    numbers[i] = previousMin = numbers[minidx];			//assigns the minval to numbers[i] and previousMin (so the next run of the for loop doesn't get the wrong i-th minval)
+		    numbers[minidx] = tmp;					//recovers tmp value to assign where the current minval came from in the numbers array
+		    System.out.println(Arrays.toString(numbers));		//prints the line
+		};
+
+		//I actually did not encounter any errors, it worked exactly the way I planned it to
+
+		scnr.close();
+        
+    }
+}

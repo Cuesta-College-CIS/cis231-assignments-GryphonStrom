@@ -1,0 +1,43 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scnr = new Scanner(System.in);
+		final int L = 3; // will NOT use L. Just for the extendability.
+		final int M = 3;
+		final int N = 2;
+		
+		int[][] matrix1 = { { 2, 5, 10 },
+				            { 3, 6, 9 },
+				            { 1, 2, 3 } };
+		
+		int[][] matrix2 = { { 10, 20 },
+				            { 30, 40 },
+				            { 50, 60 } };
+		int rowidx = scnr.nextInt();
+
+		// Your code
+        int i = 0;                      //I just like to declare the iteration variables once, rather than in each loop
+        int j = 0;                      //Since there is only one i and j for loop, it probably makes more sense to declare them within the loop though
+        int product = 0;                //variable to store one matrix multiplication for printing
+        
+        for (i = 0; i < N; i++) {                         //i for loop to run N times
+            for (j = 0; j < M; j++) {                           //j for loop to run M times
+                product += matrix1[rowidx][j] * matrix2[j][i]   ;   //multiplies matrix1 row with matrix2
+            };
+            System.out.print(product + " ");                //prints the result of the multiplication
+            product = 0;                                    //resets product for subsequent matrix multiplication
+        };
+		scnr.close();
+        
+        //This code also ran the first time I wrote it without logic errors! I would include an explanation of my errors if I had any...
+    }
+}
+
+
+
