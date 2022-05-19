@@ -1,0 +1,54 @@
+public class findSubstring {
+  
+  public static void findGreatestSubstring() {
+    int inputSize = ((int)Math.floor(Math.random()*20))+3; //n can equal 3-23
+    System.out.println("Array length rng: " + inputSize);
+    System.out.println("Number of substrings in Array length " + inputSize + ": " + (inputSize-2));
+    int ssArray[] = new int[inputSize];
+
+    for (int i = 0; i < inputSize; i++) {
+      ssArray[i] = (int)Math.ceil(Math.random()*50); //array values can be 1-50
+    }
+    
+    System.out.print("Array: ");
+    for (int i = 0; i < inputSize; i++) {
+      System.out.print(ssArray[i] + " ");
+    }
+    System.out.println();
+
+    
+    int ssMax = 0;
+    int ssMaxIDX = 0;
+    
+    for (int i = 0; i < inputSize; i++) {
+      int temp = 0;
+      if (i < inputSize-2)
+        for (int j = i; j < i+3; j++) {
+          temp+= ssArray[j];
+        }
+        if (temp > ssMax) {
+          ssMax = temp;
+          ssMaxIDX = i;
+          System.out.println("Substring " + (i+1) + " sum (ssArray[" + i + "] to ssArray[" + (i+2) + "]): " + temp);
+          }
+        else if ((i+3) <= inputSize) {
+          System.out.println("Substring " + (i+1) + " sum (ssArray[" + i + "] to ssArray[" + (i+2) + "]): " + temp);
+          }
+    };
+    System.out.println();
+    System.out.println("Greatest Sum Value: " + ssMax);
+    System.out.print("Greatest length 3 substring: "); //What the assignment actually asks for
+    for (int i = 0; i < 3; i++) {                     //All the other output was for testing, but I left it in
+      System.out.print(ssArray[ssMaxIDX + i] + ", ");
+    }
+
+    
+}
+
+  public static void main(String[] args) {
+    
+  findGreatestSubstring();
+  
+ }
+
+}

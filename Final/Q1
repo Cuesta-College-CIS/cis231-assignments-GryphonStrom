@@ -1,0 +1,55 @@
+public class findMedian {
+  
+  public static void findRandomMedian() {
+    int inputSize = (int)Math.floor(Math.random()*20); //n can equal 0-20
+    System.out.println("Original rng int array size: " + inputSize);
+    if (inputSize % 2 == 0) {
+      inputSize+=1;       //ensure random number is odd, n can equal 1-21
+      System.out.println("rng int adjusted to nonzero odd: " + inputSize);   
+    }
+    int medArray[] = new int[inputSize];
+
+    for (int i = 0; i < inputSize; i++) {
+      if (Math.random() > .5)
+        medArray[i] = (int)Math.floor(Math.random()*50);        //array values can be 0-50, positive or negative
+
+        else
+        medArray[i] = (int)Math.floor(Math.random()*-50); 
+    }           //should not assume number is positive, so Iadded a condition to make random negative numbers
+    
+    System.out.print("Unsorted Array: ");
+    for (int i = 0; i < inputSize; i++) {
+      System.out.print(medArray[i] + " ");
+    }
+    
+    for (int l = 0; l <inputSize/2; l++) {
+      for (int i = 0; i < inputSize-1; i++) {
+        int tempIDX = i;
+          for (int j = i+1; j < inputSize; j++) {
+            if (medArray[j] < medArray[tempIDX]) {
+              tempIDX = j;
+            }
+          }
+        int temp = medArray[tempIDX];
+        medArray[tempIDX] = medArray[i]; 
+        medArray[i] = temp;
+ 
+    }
+}
+    
+    System.out.println();
+    System.out.print("Partially-Sorted Array: ");
+    for (int i = 0; i < inputSize; i++) {
+    System.out.print(medArray[i] + " ");
+    }
+    System.out.println();
+    System.out.print("Median Value: " + medArray[(inputSize-1)/2]);
+  
+  }
+
+  public static void main(String[] args) {
+    
+  findRandomMedian();
+
+ }
+}
